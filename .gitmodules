@@ -1,0 +1,12 @@
+[submodule "roles/bvansomeren.docker"]
+	path = roles/bvansomeren.docker
+	url = https://github.com/bvansomeren/bvansomeren.docker.git
+[submodule "roles/bvansomeren.logwatch"]
+	path = roles/bvansomeren.logwatch
+	url = https://github.com/bvansomeren/ansible-logwatch.git
+[submodule "roles/geerlingguy.security"]
+	path = roles/geerlingguy.security
+	url = https://github.com/geerlingguy/ansible-role-security.git
+[submodule "roles/geerlingguy.firewall"]
+	path = roles/geerlingguy.firewall
+	url = https://github.com/geerlingguy/ansible-role-firewall.git
