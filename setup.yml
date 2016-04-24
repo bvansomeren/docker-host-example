@@ -1,0 +1,32 @@
+---
+
+- hosts: all
+  become: yes
+  become_user: root
+  roles:
+    - geerlingguy.firewall
+    - geerlingguy.security
+    - bvansomeren.logwatch
+    - bvansomeren.docker
+  vars:
+  pre_tasks:
+    - name: add Barry
+      user: name=barry state=present
+  tasks:
+    - name: data container
+      docker:
+        name: mydata
+        image: busybox
+        state: present
+        volumes:
+          - /data
+    - name: redis container
+      docker:
+        name: myredis
+        image: redis
+        command: redis-server --appendonly yes
+        state: started
+        expose:
+          - 6379
+        volumes_from:
+          - mydata

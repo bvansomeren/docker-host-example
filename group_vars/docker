@@ -1,0 +1,15 @@
+firewall_allowed_tcp_ports:
+  - "22"
+  - "2202"
+  - "80"
+  - "443"
+  - "6379"
+
+logwatch_overrides:
+  - { name: MailTo, config: barry@bvansomeren.net }
+
+security_ssh_password_authentication: 'no'
+security_ssh_permit_root_login: 'no'
+security_fail2ban_enabled: true
+security_sudoers_passwordless:
+  - barry
