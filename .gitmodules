@@ -1,6 +1,6 @@
 [submodule "roles/bvansomeren.docker"]
 	path = roles/bvansomeren.docker
-	url = https://github.com/bvansomeren/bvansomeren.docker.git
+	url = https://github.com/bvansomeren/ansible-docker.git
 [submodule "roles/bvansomeren.logwatch"]
 	path = roles/bvansomeren.logwatch
 	url = https://github.com/bvansomeren/ansible-logwatch.git
@@ -10,3 +10,6 @@
 [submodule "roles/geerlingguy.firewall"]
 	path = roles/geerlingguy.firewall
 	url = https://github.com/geerlingguy/ansible-role-firewall.git
+[submodule "roles/bvansomeren.cockpit"]
+	path = roles/bvansomeren.cockpit
+	url = https://github.com/bvansomeren/ansible-cockpit.git

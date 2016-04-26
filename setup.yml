@@ -6,27 +6,30 @@
   roles:
     - geerlingguy.firewall
     - geerlingguy.security
-    - bvansomeren.logwatch
-    - bvansomeren.docker
+    - { role: bvansomeren.logwatch, logwatch_confirm_mail: no }
+    - { role: bvansomeren.docker, docker_userepo: no }
+    - bvansomeren.cockpit
   vars:
   pre_tasks:
     - name: add Barry
       user: name=barry state=present
   tasks:
-    - name: data container
+    - name: gitlab container
       docker:
-        name: mydata
-        image: busybox
-        state: present
-        volumes:
-          - /data
-    - name: redis container
-      docker:
-        name: myredis
-        image: redis
-        command: redis-server --appendonly yes
+        docker_api_version: 1.21
+        name: gitlab
+        hostname: gitlab.example.com
+        restart_policy: always
+        image: gitlab/gitlab-ce
         state: started
-        expose:
-          - 6379
-        volumes_from:
-          - mydata
+        publish_all_ports: yes
+        ports:
+          - "22222:22"
+          - "80:80"
+          - "443:443"
+        volumes:
+          - "/srv/gitlab/config:/etc/gitlab"
+          - "/srv/gitlab/logs:/var/log/gitlab"
+          - "/srv/gitlab/data:/var/opt/gitlab"
+    - name: auto restart specific container for demo
+      cron: name="restart gitlab container" special_time=daily job="/usr/bin/docker restart gitlab"
